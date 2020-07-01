@@ -35,4 +35,9 @@ class StorageManager {
             }
         }
     }
+    
+    func deleteContext(_ task: Task) {
+        persistentContainer.viewContext.delete(task)
+        saveContext()
+    }
 }

@@ -40,6 +40,7 @@ class TaskListViewController: UITableViewController {
         let delete = UIContextualAction(style: .normal, title: "Delete") {
             (action, view, completionHandler) in completionHandler(true)
             
+            StorageManager.storageManager.deleteContext(self.tasks[indexPath.row])
             self.tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
