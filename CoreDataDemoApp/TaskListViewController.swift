@@ -35,7 +35,7 @@ class TaskListViewController: UITableViewController {
             self.showAlert(with: "Edit Task", and: "Do you want to change task?")
         }
         edit.image = UIImage(systemName: "square.and.pencil")
-        edit.backgroundColor = .green
+        edit.backgroundColor = #colorLiteral(red: 0.001868192435, green: 0.6579348838, blue: 0.002898670662, alpha: 1)
         
         let delete = UIContextualAction(style: .normal, title: "Delete") {
             (action, view, completionHandler) in completionHandler(true)
