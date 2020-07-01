@@ -13,7 +13,6 @@
 		A8E02C8024AA564E0060666A /* CoreDataDemoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8E02C7E24AA564E0060666A /* CoreDataDemoApp.xcdatamodeld */; };
 		A8E02C8224AA56510060666A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8E02C8124AA56510060666A /* Assets.xcassets */; };
 		A8E02C8524AA56510060666A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8E02C8324AA56510060666A /* LaunchScreen.storyboard */; };
-		A8E02C8D24AA5C970060666A /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E02C8C24AA5C970060666A /* NewTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +24,6 @@
 		A8E02C8124AA56510060666A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8E02C8424AA56510060666A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8E02C8624AA56510060666A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A8E02C8C24AA5C970060666A /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +58,6 @@
 			children = (
 				A8E02C7524AA564E0060666A /* AppDelegate.swift */,
 				A8E02C7924AA564E0060666A /* TaskListViewController.swift */,
-				A8E02C8C24AA5C970060666A /* NewTaskViewController.swift */,
 				A8E02C8124AA56510060666A /* Assets.xcassets */,
 				A8E02C8324AA56510060666A /* LaunchScreen.storyboard */,
 				A8E02C8624AA56510060666A /* Info.plist */,
@@ -143,7 +140,6 @@
 				A8E02C7A24AA564E0060666A /* TaskListViewController.swift in Sources */,
 				A8E02C8024AA564E0060666A /* CoreDataDemoApp.xcdatamodeld in Sources */,
 				8C0AE6B224ABCE8B00621BC7 /* StorageManager.swift in Sources */,
-				A8E02C8D24AA5C970060666A /* NewTaskViewController.swift in Sources */,
 				A8E02C7624AA564E0060666A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -31,6 +31,8 @@ class TaskListViewController: UITableViewController {
         
         let edit = UIContextualAction(style: .normal, title: "Edit") {
             (action, view, completionHandler) in completionHandler(true)
+            
+            self.showAlert(with: "Edit Task", and: "Do you want to change task?")
         }
         edit.image = UIImage(systemName: "square.and.pencil")
         edit.backgroundColor = .green
