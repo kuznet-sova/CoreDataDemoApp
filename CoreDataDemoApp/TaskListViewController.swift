@@ -37,6 +37,9 @@ class TaskListViewController: UITableViewController {
         
         let delete = UIContextualAction(style: .normal, title: "Delete") {
             (action, view, completionHandler) in completionHandler(true)
+            
+            self.tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         delete.image = UIImage(systemName: "trash")
         delete.backgroundColor = .red
@@ -74,14 +77,6 @@ class TaskListViewController: UITableViewController {
     
     @objc private func addTask() {
         showAlert(with: "New Task", and: "What do you want to do?")
-    }
-    
-    @objc private func editTask() {
-        showAlert(with: "Edit Task", and: "What do you want to do?")
-    }
-    
-    @objc private func deleteTask() {
-        showAlert(with: "Delete Task", and: "What do you want to do?")
     }
     
     private func showAlert(with title: String, and message: String) {
@@ -144,16 +139,5 @@ extension TaskListViewController {
         let task = tasks[indexPath.row]
         cell.textLabel?.text = task.name
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-            return .delete
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tasks.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
     }
 }
