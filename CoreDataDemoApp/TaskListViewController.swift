@@ -32,10 +32,7 @@ class TaskListViewController: UITableViewController {
         let edit = UIContextualAction(style: .normal, title: "Edit") {
             (action, view, completionHandler) in completionHandler(true)
             
-            StorageManager.storageManager.deleteContext(self.tasks[indexPath.row])
-            self.tasks.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.showAlert(with: "Edit Task", and: "Do you want to change task?")
+            self.showEditAlert(with: "Edit Task", message: "Do you want to change task?", indexPath: indexPath)
         }
         edit.image = UIImage(systemName: "square.and.pencil")
         edit.backgroundColor = #colorLiteral(red: 0.001868192435, green: 0.6579348838, blue: 0.002898670662, alpha: 1)
@@ -82,15 +79,32 @@ class TaskListViewController: UITableViewController {
     }
     
     @objc private func addTask() {
-        showAlert(with: "New Task", and: "What do you want to do?")
+        showAddAlert(with: "New Task", and: "What do you want to do?")
     }
     
-    private func showAlert(with title: String, and message: String) {
+    private func showAddAlert(with title: String, and message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
             guard let task = alert.textFields?.first?.text, !task.isEmpty else { return }
             self.save(task)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        alert.addTextField()
+        
+        present(alert, animated: true)
+    }
+    
+    private func showEditAlert(with title: String, message: String, indexPath: IndexPath) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+            guard let task = alert.textFields?.first?.text, !task.isEmpty else { return }
+            self.edit(taskName: task, indexPath: indexPath)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
@@ -115,6 +129,19 @@ extension TaskListViewController {
         
         let indexPath = IndexPath(row: tasks.count - 1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+        
+        do {
+            try viewContext.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func edit(taskName: String, indexPath: IndexPath) {
+        guard NSEntityDescription.entity(forEntityName: "Task", in: viewContext) != nil else { return }
+        
+        tasks[indexPath.row].name = taskName
+        tableView.reloadRows(at: [indexPath], with: .automatic)
         
         do {
             try viewContext.save()
