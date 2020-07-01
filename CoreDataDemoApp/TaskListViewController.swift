@@ -26,6 +26,24 @@ class TaskListViewController: UITableViewController {
         fetchData()
         tableView.reloadData()
     }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let edit = UIContextualAction(style: .normal, title: "Edit") {
+            (action, view, completionHandler) in completionHandler(true)
+        }
+        edit.image = UIImage(systemName: "square.and.pencil")
+        edit.backgroundColor = .green
+        
+        let delete = UIContextualAction(style: .normal, title: "Delete") {
+            (action, view, completionHandler) in completionHandler(true)
+        }
+        delete.image = UIImage(systemName: "trash")
+        delete.backgroundColor = .red
+        
+        let swipe = UISwipeActionsConfiguration(actions: [delete, edit])
+        return swipe
+    }
 
     private func setupNavigationBar() {
         title = "Task List"
@@ -55,13 +73,15 @@ class TaskListViewController: UITableViewController {
     }
     
     @objc private func addTask() {
-        /*
-        let newTaskVC = NewTaskViewController()
-        newTaskVC.modalPresentationStyle = .fullScreen
-        present(newTaskVC, animated: true)
-        */
-        
         showAlert(with: "New Task", and: "What do you want to do?")
+    }
+    
+    @objc private func editTask() {
+        showAlert(with: "Edit Task", and: "What do you want to do?")
+    }
+    
+    @objc private func deleteTask() {
+        showAlert(with: "Delete Task", and: "What do you want to do?")
     }
     
     private func showAlert(with title: String, and message: String) {
@@ -124,5 +144,16 @@ extension TaskListViewController {
         let task = tasks[indexPath.row]
         cell.textLabel?.text = task.name
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+            return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
