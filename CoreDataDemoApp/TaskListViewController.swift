@@ -138,8 +138,6 @@ extension TaskListViewController {
     }
     
     private func edit(taskName: String, indexPath: IndexPath) {
-        guard NSEntityDescription.entity(forEntityName: "Task", in: viewContext) != nil else { return }
-        
         tasks[indexPath.row].name = taskName
         tableView.reloadRows(at: [indexPath], with: .automatic)
         
