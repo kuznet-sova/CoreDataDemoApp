@@ -32,6 +32,9 @@ class TaskListViewController: UITableViewController {
         let edit = UIContextualAction(style: .normal, title: "Edit") {
             (action, view, completionHandler) in completionHandler(true)
             
+            StorageManager.storageManager.deleteContext(self.tasks[indexPath.row])
+            self.tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
             self.showAlert(with: "Edit Task", and: "Do you want to change task?")
         }
         edit.image = UIImage(systemName: "square.and.pencil")
