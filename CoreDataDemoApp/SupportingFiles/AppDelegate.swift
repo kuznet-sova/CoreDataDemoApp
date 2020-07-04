@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  CoreDataDemoApp
 //
-//  Created by Alexey Efimov on 29.06.2020.
+//  Created by Ирина Кузнецова on 04.07.2020.
 //  Copyright © 2020 Alexey Efimov. All rights reserved.
 //
 
@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        StorageManager.storageManager.saveContext()
+        StorageManager.shared.saveContext()
     }
 }
-
